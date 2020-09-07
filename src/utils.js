@@ -1,8 +1,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.getGithubToken = exports.getRepositoryInformation = void 0;
+exports.hasExactRefs = exports.pullRequestHasLabel = exports.getGithubToken = exports.getRepositoryInformation = void 0;
 const tslib_1 = require('tslib');
 const core = tslib_1.__importStar(require('@actions/core'));
-const constant_1 = require('./constant');
 exports.getRepositoryInformation = () => {
   var _a;
   const repositoryInformation =
@@ -20,5 +19,18 @@ exports.getRepositoryInformation = () => {
         : repositoryInformation[1]) || '',
   };
 };
-exports.getGithubToken = () => core.getInput(constant_1.GITHUB_TOKEN);
+exports.getGithubToken = () => core.getInput('github-token');
+exports.pullRequestHasLabel = (pullRequest, labelName) => {
+  if (pullRequest.labels.length) {
+    const matchingLabel = pullRequest.labels.filter(
+      label => label.name === labelName
+    );
+    if (matchingLabel.length) {
+      return true;
+    }
+  }
+  return false;
+};
+exports.hasExactRefs = (pullRequest, head, base) =>
+  pullRequest.head.ref === head && pullRequest.base.ref === base;
 //# sourceMappingURL=utils.js.map

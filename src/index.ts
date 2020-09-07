@@ -22,10 +22,16 @@ githubHelper
           githubHelper
             .mergePullRequest(pullRequest.number)
             .then(res => {
-              core.setOutput(
-                'message',
-                `Successfully merged Pull Request with number ${res.data.number}`
-              );
+              core.debug(res.data);
+              if (res.data.status === 'merged') {
+                core.info(
+                  `Successfully merged Pull Request with number ${res.data.number}`
+                );
+              } else {
+                core.info(
+                  `Successfully closed Pull Request with number ${res.data.number}`
+                );
+              }
             })
             .catch(e => {
               core.setFailed(e.message);
@@ -33,7 +39,9 @@ githubHelper
         }
       });
     } else {
-      core.setOutput('message', `No Pull Requests available`);
+      core.info(
+        `No Pull Requests available from ${headBranch} to ${baseBranch}`
+      );
     }
   })
   .catch(e => core.setFailed(e.message));

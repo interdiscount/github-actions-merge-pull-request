@@ -4,6 +4,7 @@ import { Endpoints } from '@octokit/types';
 
 type openPullRequestsResponse = Endpoints['GET /repos/:owner/:repo/pulls']['response'];
 type mergePullRequestResponse = Endpoints['GET /repos/:owner/:repo/pulls/:pull_number/merge']['response'];
+type updatePullRequestResponse = Endpoints['PATCH /repos/:owner/:repo/pulls/:pull_number']['response'];
 
 export class GitHubHelper {
   private octokit: InstanceType<typeof Octokit>;
@@ -14,7 +15,7 @@ export class GitHubHelper {
 
   mergePullRequest = async (
     pullRequestNumber: number
-  ): Promise<mergePullRequestResponse> => {
+  ): Promise<mergePullRequestResponse | updatePullRequestResponse> => {
     const pullRequestResponse = await this.octokit.pulls.get({
       ...getRepositoryInformation(),
       pull_number: pullRequestNumber,

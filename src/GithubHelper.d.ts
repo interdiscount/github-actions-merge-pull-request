@@ -1,18 +1,13 @@
 import { Endpoints } from '@octokit/types';
-declare type createPullRequestResponse = Endpoints['POST /repos/:owner/:repo/pulls']['response'];
-declare type addLabelResponse = Endpoints['POST /repos/:owner/:repo/issues/:issue_number/labels']['response'];
+declare type openPullRequestsResponse = Endpoints['GET /repos/:owner/:repo/pulls']['response'];
+declare type mergePullRequestResponse = Endpoints['GET /repos/:owner/:repo/pulls/:pull_number/merge']['response'];
+declare type updatePullRequestResponse = Endpoints['PATCH /repos/:owner/:repo/pulls/:pull_number']['response'];
 export declare class GitHubHelper {
   private octokit;
   constructor();
-  createPullRequest: (
-    title: string,
-    body: string,
-    head: string,
-    base: string
-  ) => Promise<createPullRequestResponse>;
-  addLabelToPullRequest: (
-    issueNumber: number,
-    label: string
-  ) => Promise<addLabelResponse>;
+  mergePullRequest: (
+    pullRequestNumber: number
+  ) => Promise<mergePullRequestResponse | updatePullRequestResponse>;
+  getOpenPullRequests: () => Promise<openPullRequestsResponse>;
 }
 export {};

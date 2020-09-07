@@ -17,7 +17,7 @@ export const getRepositoryInformation = (): RepositoryInformation => {
 export const getGithubToken = () => core.getInput('github-token');
 
 export const pullRequestHasLabel = (
-  pullRequest,
+  pullRequest: PullsListSingle,
   labelName: string
 ): boolean => {
   if (pullRequest.labels.length) {
@@ -31,5 +31,8 @@ export const pullRequestHasLabel = (
   return false;
 };
 
-export const hasExactRefs = (pullRequest, head: string, base: string) =>
-  pullRequest.head.ref === head && pullRequest.base.ref === base;
+export const hasExactRefs = (
+  pullRequest: PullsListSingle,
+  head: string,
+  base: string
+): boolean => pullRequest.head.ref === head && pullRequest.base.ref === base;

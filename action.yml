@@ -15,9 +15,6 @@ inputs:
   label-name:
     description: 'label to filter'
     default: 'automerge'
-outputs:
-  message:
-    description: 'output message'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
