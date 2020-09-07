@@ -1,0 +1,23 @@
+name: 'Merge Pull Request'
+description: 'Automated merge of Pull Request'
+inputs:
+  github-token:
+    description: 'token for github'
+    required: true
+  head-branch:
+    description: 'branch to merge into base branch'
+    required: true
+    default: 'production'
+  base-branch:
+    description: 'base branch to merge into'
+    required: true
+    default: 'development'
+  label-name:
+    description: 'label to filter'
+    default: 'automerge'
+outputs:
+  message:
+    description: 'output message'
+runs:
+  using: 'node12'
+  main: 'index.js'

@@ -1,0 +1,45 @@
+{
+  "version": "1.0.8",
+  "license": "MIT",
+  "main": "src/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsc && ncc build",
+    "lint": "tsdx lint --fix"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint --fix"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "merge-pull-request",
+  "author": "Yannick Wittwer",
+  "module": "dist/merge-pull-request.esm.js",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "tsdx": "^0.13.3",
+    "tslib": "^2.0.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@octokit/core": "^3.1.2",
+    "@octokit/plugin-rest-endpoint-methods": "^4.1.4",
+    "@octokit/types": "^5.4.1",
+    "@vercel/ncc": "^0.24.0"
+  }
+}
