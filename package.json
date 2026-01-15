@@ -31,7 +31,7 @@
   "module": "dist/merge-pull-request.esm.js",
   "devDependencies": {
     "husky": "^4.2.5",
-    "tsdx": "^0.13.3",
+    "tsdx": "^2.0.0",
     "tslib": "^2.0.1",
     "typescript": "^4.0.2"
   },
